@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\database",
+    "\\resources",
+    "\\resources\\views",
+    "\\resources\\views\\kaprodi",
+    "\\resources\\views\\mahasiswa",
+    "\\routes"
+  ],
+  "SelectedNode": "\\resources\\views\\mahasiswa\\profile.blade.php",
+  "PreviewInSolutionExplorer": false
+}
