@@ -41,18 +41,13 @@ Route::get('/dosen/dashboard', [
     ])->middleware('auth')->name('dosen.dashboard');
 
 Route::controller(Kaprodi::class)->group(function () {
-    // Route untuk CRUD dosen
-    // Route::get('/kaprodi/dosens/create', 'createDosen')->name('kaprodi.dosens.create'); // Form untuk tambah dosen 
-    Route::post('/kaprodi/dosens', 'saveDosen')->name('kaprodi.dosens.save'); // Simpan dosen baru
-    // Route::get('/kaprodi/dosens/{dosen}/edit', 'editDosen')->name('kaprodi.dosens.edit'); // Form untuk edit dosen
-    Route::put('/kaprodi/dosens/{dosen}', 'updateDosen')->name('kaprodi.dosens.update'); // Update data dosen
-    Route::delete('/kaprodi/dosens/{dosen}', 'destroyDosen')->name('kaprodi.dosens.destroy'); // Hapus dosen
+    Route::post('/kaprodi/dosens', 'saveDosen')->name('kaprodi.dosens.save');
+    Route::put('/kaprodi/dosens/{dosen}', 'updateDosen')->name('kaprodi.dosens.update');
+    Route::delete('/kaprodi/dosens/{dosen}', 'destroyDosen')->name('kaprodi.dosens.destroy');
 
     // Route untuk CRUD kelas
-    Route::get('/kaprodi/kelas/read', 'showKelas')->name('kaprodi.kelas.read'); // Form untuk tambah kelas
-    Route::get('/kaprodi/kelas/create', 'createKelas')->name('kaprodi.kelas.create'); // Form untuk tambah kelas
+    Route::get('/kaprodi/kelas/read', 'showKelas')->name('kaprodi.kelas.read');
     Route::post('/kaprodi/kelas', 'saveKelas')->name('kaprodi.kelas.save'); // Simpan kelas baru
-    Route::get('/kaprodi/kelas/{kelas}/edit', 'editKelas')->name('kaprodi.kelas.edit'); // Form untuk edit kelas
     Route::put('/kaprodi/kelas/{kelas}', 'updateKelas')->name('kaprodi.kelas.update'); // Update data kelas
     Route::delete('/kaprodi/kelas/{kelas}', 'destroyKelas')->name('kaprodi.kelas.destroy'); // Hapus kelas
 

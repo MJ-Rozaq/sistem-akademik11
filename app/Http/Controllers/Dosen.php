@@ -52,7 +52,6 @@ class Dosen extends Controller
 
         Mahasiswa::create(array_merge($request->all(), [
             'user_id' => $user->id,
-            // 'wali_kelas_id' => Auth::user()->id, // Removed this line
         ]));
 
         return redirect()->route('dosen.dashboard')->with('success', 'Mahasiswa berhasil ditambahkan');
@@ -63,7 +62,6 @@ class Dosen extends Controller
         $user = User::all();
         $kelas = Kelas::all();
 
-        // Check if the current dosen can manage this mahasiswa based on kelas_id
         if (!$this->isDosenWaliKelas(Auth::user(), $mahasiswa->kelas_id)) {
             return redirect()->route('dosen.dashboard')->with('error', 'Anda tidak memiliki akses untuk mengedit mahasiswa ini.');
         }
@@ -100,7 +98,6 @@ class Dosen extends Controller
         $dosen = Auth::user()->dosen; // Get dosen from authenticated user
         $mahasiswa = Mahasiswa::find($request->mahasiswa_id);
 
-        // Check if the dosen can manage the mahasiswa's class
         if (!$this->isDosenWaliKelas($dosen, $mahasiswa->kelas_id)) {
             return redirect()->route('dosen.dashboard')->with('error', 'Anda tidak memiliki akses untuk menyetujui request ini.');
         }
@@ -125,7 +122,6 @@ class Dosen extends Controller
         $dosen = Auth::user()->dosen;
         $mahasiswa = Mahasiswa::find($request->mahasiswa_id);
 
-        // Check if the dosen can manage the mahasiswa's class
         if (!$this->isDosenWaliKelas($dosen, $mahasiswa->kelas_id)) {
             return redirect()->route('dosen.dashboard')->with('error', 'Anda tidak memiliki akses untuk menolak request ini.');
         }
@@ -138,7 +134,6 @@ class Dosen extends Controller
 
     private function isDosenWaliKelas($dosen, $kelasId)
     {
-        // Check if the dosen has the kelas assigned via the pivot table
         return $dosen->kelas()->where('id', $kelasId)->exists();
     }
 }
